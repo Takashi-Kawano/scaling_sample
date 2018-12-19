@@ -1,0 +1,12 @@
+{
+    "credential_file": "../credentials/scaling-sample-427451a6e5ec.json",
+    "project_id": "meta-iterator-225901",
+    "zone": "us-west1-a",
+    "project": "scaling-sample",
+    "machine_type": "f1-micro",
+    "disk_size": "30",
+    "app_stage": "dev",
+    "group": "dev",
+    "network": "default",
+    "playbook_file": "playbook/build_image.yml"
+}

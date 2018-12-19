@@ -15,3 +15,6 @@ variable "project_id" {
   default = "meta-iterator-225901"
 }
 
+variable "ansible_public_key" {
+  default = "../../../credentials/ansible_key.pub"
+}

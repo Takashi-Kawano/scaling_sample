@@ -1,0 +1,34 @@
+{
+  "builders": [{
+    "type": "googlecompute",
+    "account_file": "{{user `credential_file`}}",
+    "project_id": "{{user `project_id`}}",
+    "source_image_family": "centos-7",
+    "zone": "{{user `zone`}}",
+    "instance_name": "{{user `project`}}-{{user `app_stage`}}-instance-base",
+    "machine_type": "{{user `machine_type`}}",
+    "disk_size": "{{user `disk_size`}}",
+    "image_family": "{{user `project`}}-{{user `app_stage`}}-instance",
+    "image_name": "{{user `project`}}-{{user `app_stage`}}-instance-{{timestamp}}",
+    "network": "default",
+    "subnetwork": "default",
+    "omit_external_ip": false,
+    "use_internal_ip": false,
+    "tags": [
+        "packer-build"
+    ],
+    "ssh_username": "ansible",
+    "ssh_private_key_file": "../credentials/ansible_key"
+  }],
+  "provisioners": [
+    {
+      "type": "ansible",
+      "playbook_file": "{{user `playbook_file`}}",
+      "extra_arguments": [
+          "-i", "./inventory",
+          "-e", "packer_build_target={{user `project`}}-{{user `app_stage`}}-instance-base",
+          "-e", "packer_build=yes"
+      ]
+    }
+  ]
+}

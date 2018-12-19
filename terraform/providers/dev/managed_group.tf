@@ -13,6 +13,7 @@ resource "google_compute_instance_template" "instance_template" {
 
   network_interface {
     network = "${var.network}"
+    access_config {}
   }
 
   lifecycle {
@@ -26,5 +27,11 @@ resource "google_compute_instance_group_manager" "instance_group_manager" {
   base_instance_name = "dev-instance"
   zone = "${var.zone}"
   target_size = "${var.dev_target_size}"
+  update_strategy = "ROLLING_UPDATE"
+  rolling_update_policy {
+    minimal_action = "REPLACE"
+    type = "PROACTIVE"
+    max_unavailable_fixed = 0
+  }
 }
 

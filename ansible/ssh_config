@@ -1,0 +1,7 @@
+Host *
+    User ansible
+    IdentityFile ../credentials/ansible_key
+    StrictHostKeyChecking no
+    GSSAPIAuthentication no
+    UserKnownHostsFile /dev/null
+

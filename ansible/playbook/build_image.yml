@@ -1,0 +1,11 @@
+
+- name: Execute Base Setting...
+  hosts: "{{ packer_build_target }}"
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: Create sample file
+      copy:
+        content: helloworld
+        dest: /message
